@@ -1,0 +1,339 @@
+testPartialRequest:
+  getAppId:
+    method: getAppId
+    path: app.id
+    expected: 123
+  getAppName:
+    method: getAppName
+    path: app.name
+    expected: __dummy_value__
+  getAppVersion:
+    method: getAppVersion
+    path: app.version
+    expected: __dummy_value__
+  isEndpointConfigEnabled:
+    method: isEndpointConfigEnabled
+    path: endpoint.config.enabled
+    expected: true
+  isEndpointOpenApiEnabled:
+    method: isEndpointOpenApiEnabled
+    path: endpoint.openapi.enabled
+    expected: true
+  getEndpointOpenApiSource:
+    method: getEndpointOpenApiSource
+    path: endpoint.openapi.source
+    expected: __dummy_value__
+  getEndpointOpenApiServers:
+    method: getEndpointOpenApiServers
+    path: endpoint.openapi.servers
+    expected: [__dummy_value__]
+  isCorsEnabled:
+    method: isCorsEnabled
+    path: cors.enabled
+    expected: true
+  getCorsOrigin:
+    method: getCorsOrigin
+    path: cors.origin
+    expected: __dummy_value__
+  isErrorTraceEnabled:
+    method: isErrorTraceEnabled
+    path: errors.trace.enabled
+    expected: true
+  isLogRequestEnabled:
+    method: isLogRequestEnabled
+    path: log.request.enabled
+    expected: true
+  getLogRequestMessage:
+    method: getLogRequestMessage
+    path: log.request.message
+    expected: __dummy_value__
+  getLogRequestLevel:
+    method: getLogRequestLevel
+    path: log.request.level
+    expected: __dummy_value__
+  isLogResponseEnabled:
+    method: isLogResponseEnabled
+    path: log.response.enabled
+    expected: true
+  getLogResponseMessage:
+    method: getLogResponseMessage
+    path: log.response.message
+    expected: __dummy_value__
+  getLogResponseLevel:
+    method: getLogResponseLevel
+    path: log.response.level
+    expected: __dummy_value__
+  isLogExceptionEnabled:
+    method: isLogExceptionEnabled
+    path: log.exception.enabled
+    expected: true
+  getLogExceptionMessage:
+    method: getLogExceptionMessage
+    path: log.exception.message
+    expected: __dummy_value__
+  getLogExceptionLevel:
+    method: getLogExceptionLevel
+    path: log.exception.level
+    expected: __dummy_value__
+  getAccessAllowGlobals:
+    method: getAccessAllowGlobals
+    path: access.allow.global
+    expected: [__dummy_value__]
+  getAccessAllowEndpoints:
+    method: getAccessAllowEndpoints
+    path: access.allow.endpoints
+    expected: [__dummy_value__]
+  getAccessDenyGlobals:
+    method: getAccessDenyGlobals
+    path: access.deny.global
+    expected: [__dummy_value__]
+  getAccessDenyEndpoints:
+    method: getAccessDenyEndpoints
+    path: access.deny.endpoints
+    expected: [__dummy_value__]
+  isHeaderVersionEnabled:
+    method: isHeaderVersionEnabled
+    path: version.header.enabled
+    expected: true
+
+testPartialExceptionRequest:
+  getAppId:
+    method: getAppId
+    path: app.id
+    value: string
+    expected: app.id config value is not an integer
+  getAppIdNull:
+    method: getAppId
+    path: app.id
+    value: null
+    expected: app.id config value is not an integer
+  getAppName:
+    method: getAppName
+    path: app.name
+    value: 123
+    expected: app.name config value is not a string
+  getAppNameNull:
+    method: getAppName
+    path: app.name
+    value: null
+    expected: app.name config value is not a string
+  getAppVersion:
+    method: getAppVersion
+    path: app.version
+    value: 123
+    expected: app.version config value is not a string
+  getAppVersionNull:
+    method: getAppVersion
+    path: app.version
+    value: null
+    expected: app.version config value is not a string
+  isEndpointConfigEnabled:
+    method: isEndpointConfigEnabled
+    path: endpoint.config.enabled
+    value: string
+    expected: endpoint.config.enabled config value is not a boolean
+  isEndpointConfigEnabledNull:
+    method: isEndpointConfigEnabled
+    path: endpoint.config.enabled
+    value: null
+    expected: endpoint.config.enabled config value is not a boolean
+  isEndpointOpenApiEnabled:
+    method: isEndpointOpenApiEnabled
+    path: endpoint.openapi.enabled
+    value: string
+    expected: endpoint.openapi.enabled config value is not a boolean
+  isEndpointOpenApiEnabledNull:
+    method: isEndpointOpenApiEnabled
+    path: endpoint.openapi.enabled
+    value: null
+    expected: endpoint.openapi.enabled config value is not a boolean
+  getEndpointOpenApiSource:
+    method: getEndpointOpenApiSource
+    path: endpoint.openapi.source
+    value: 123
+    expected: endpoint.openapi.source config value is not a string
+  getEndpointOpenApiSourceNull:
+    method: getEndpointOpenApiSource
+    path: endpoint.openapi.source
+    value: null
+    expected: endpoint.openapi.source config value is not a string
+  getEndpointOpenApiServers:
+    method: getEndpointOpenApiServers
+    path: endpoint.openapi.servers
+    value: 123
+    expected: endpoint.openapi.servers config value is not an array
+  getEndpointOpenApiServersNull:
+    method: getEndpointOpenApiServers
+    path: endpoint.openapi.servers
+    value: null
+    expected: endpoint.openapi.servers config value is not an array
+  isCorsEnabled:
+    method: isCorsEnabled
+    path: cors.enabled
+    value: string
+    expected: cors.enabled config value is not a boolean
+  isCorsEnabledNull:
+    method: isCorsEnabled
+    path: cors.enabled
+    value: null
+    expected: cors.enabled config value is not a boolean
+  getCorsOrigin:
+    method: getCorsOrigin
+    path: cors.origin
+    value: 123
+    expected: cors.origin config value is not a string
+  getCorsOriginNull:
+    method: getCorsOrigin
+    path: cors.origin
+    value: null
+    expected: cors.origin config value is not a string
+  isErrorTraceEnabled:
+    method: isErrorTraceEnabled
+    path: errors.trace.enabled
+    value: string
+    expected: errors.trace.enabled config value is not a boolean
+  isErrorTraceEnabledNull:
+    method: isErrorTraceEnabled
+    path: errors.trace.enabled
+    value: null
+    expected: errors.trace.enabled config value is not a boolean
+  isLogRequestEnabled:
+    method: isLogRequestEnabled
+    path: log.request.enabled
+    value: string
+    expected: log.request.enabled config value is not a boolean
+  isLogRequestEnabledNull:
+    method: isLogRequestEnabled
+    path: log.request.enabled
+    value: null
+    expected: log.request.enabled config value is not a boolean
+  getLogRequestMessage:
+    method: getLogRequestMessage
+    path: log.request.message
+    value: 123
+    expected: log.request.message config value is not a string
+  getLogRequestMessageNull:
+    method: getLogRequestMessage
+    path: log.request.message
+    value: null
+    expected: log.request.message config value is not a string
+  getLogRequestLevel:
+    method: getLogRequestLevel
+    path: log.request.level
+    value: 123
+    expected: log.request.level config value is not a string
+  getLogRequestLevelNull:
+    method: getLogRequestLevel
+    path: log.request.level
+    value: null
+    expected: log.request.level config value is not a string
+  isLogResponseEnabled:
+    method: isLogResponseEnabled
+    path: log.response.enabled
+    value: string
+    expected: log.response.enabled config value is not a boolean
+  isLogResponseEnabledNull:
+    method: isLogResponseEnabled
+    path: log.response.enabled
+    value: null
+    expected: log.response.enabled config value is not a boolean
+  getLogResponseMessage:
+    method: getLogResponseMessage
+    path: log.response.message
+    value: 123
+    expected: log.response.message config value is not a string
+  getLogResponseMessageNull:
+    method: getLogResponseMessage
+    path: log.response.message
+    value: null
+    expected: log.response.message config value is not a string
+  getLogResponseLevel:
+    method: getLogResponseLevel
+    path: log.response.level
+    value: 123
+    expected: log.response.level config value is not a string
+  getLogResponseLevelNull:
+    method: getLogResponseLevel
+    path: log.response.level
+    value: null
+    expected: log.response.level config value is not a string
+  isLogExceptionEnabled:
+    method: isLogExceptionEnabled
+    path: log.exception.enabled
+    value: string
+    expected: log.exception.enabled config value is not a boolean
+  isLogExceptionEnabledNull:
+    method: isLogExceptionEnabled
+    path: log.exception.enabled
+    value: null
+    expected: log.exception.enabled config value is not a boolean
+  getLogExceptionMessage:
+    method: getLogExceptionMessage
+    path: log.exception.message
+    value: 123
+    expected: log.exception.message config value is not a string
+  getLogExceptionMessageNull:
+    method: getLogExceptionMessage
+    path: log.exception.message
+    value: null
+    expected: log.exception.message config value is not a string
+  getLogExceptionLevel:
+    method: getLogExceptionLevel
+    path: log.exception.level
+    value: 123
+    expected: log.exception.level config value is not a string
+  getLogExceptionLevelNull:
+    method: getLogExceptionLevel
+    path: log.exception.level
+    value: null
+    expected: log.exception.level config value is not a string
+  getAccessAllowGlobals:
+    method: getAccessAllowGlobals
+    path: access.allow.global
+    value: string
+    expected: access.allow.global config value is not an array
+  getAccessAllowGlobalsNull:
+    method: getAccessAllowGlobals
+    path: access.allow.global
+    value: null
+    expected: access.allow.global config value is not an array
+  getAccessAllowEndpoints:
+    method: getAccessAllowEndpoints
+    path: access.allow.endpoints
+    value: string
+    expected: access.allow.endpoints config value is not an array
+  getAccessAllowEndpointsNull:
+    method: getAccessAllowEndpoints
+    path: access.allow.endpoints
+    value: null
+    expected: access.allow.endpoints config value is not an array
+  getAccessDenyGlobals:
+    method: getAccessDenyGlobals
+    path: access.deny.global
+    value: string
+    expected: access.deny.global config value is not an array
+  getAccessDenyGlobalsNull:
+    method: getAccessDenyGlobals
+    path: access.deny.global
+    value: null
+    expected: access.deny.global config value is not an array
+  getAccessDenyEndpoints:
+    method: getAccessDenyEndpoints
+    path: access.deny.endpoints
+    value: string
+    expected: access.deny.endpoints config value is not an array
+  getAccessDenyEndpointsNull:
+    method: getAccessDenyEndpoints
+    path: access.deny.endpoints
+    value: null
+    expected: access.deny.endpoints config value is not an array
+  isHeaderVersionEnabled:
+    method: isHeaderVersionEnabled
+    path: version.header.enabled
+    value: string
+    expected: version.header.enabled config value is not a boolean
+  isHeaderVersionEnabledNull:
+    method: isHeaderVersionEnabled
+    path: version.header.enabled
+    value: null
+    expected: version.header.enabled config value is not a boolean

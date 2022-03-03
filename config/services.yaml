@@ -1,0 +1,64 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  _instanceof:
+    Hippy\Config\Partial\PartialInterface:
+      tags: [hippy.config.partial]
+    Hippy\Api\Service\Base\Check\CheckInterface:
+      tags: [hippy.check.handler]
+    Hippy\Api\Transformer\OpenApi\TransformerInterface:
+      tags: [hippy.openapi.transformer]
+    Hippy\Api\Transformer\Logging\Strategy\StrategyInterface:
+      tags: [hippy.logging.strategy]
+
+  Hippy\Api\:
+    resource: '../src/'
+    exclude:
+      - '../src/DependencyInjection/'
+      - '../src/Entity/'
+      - '../src/Kernel.php'
+      - '../tests/'
+
+  Hippy\Api\Controller\:
+    resource: '../src/Controller'
+    tags: ['controller.service_arguments']
+
+  Hippy\Api\Listener\ExceptionStrategy\UnhandledExceptionStrategy:
+    tags: [{ name: hippy.exception.strategy, priority: 0 }]
+  Hippy\Api\Listener\ExceptionStrategy\UnhandledHttpExceptionStrategy:
+    tags: [{ name: hippy.exception.strategy, priority: 1 }]
+  Hippy\Api\Listener\ExceptionStrategy\MethodNotAllowedExceptionStrategy:
+    tags: [{ name: hippy.exception.strategy, priority: 2 }]
+  Hippy\Api\Listener\ExceptionStrategy\ServiceExceptionStrategy:
+    tags: [{ name: hippy.exception.strategy, priority: 5 }]
+  Hippy\Api\Listener\ExceptionEventSubscriber:
+    arguments:
+      $strategies: !tagged_iterator hippy.exception.strategy
+
+  Hippy\Config\Config:
+    arguments:
+      $root: '%kernel.project_dir%'
+      $partials: !tagged_iterator hippy.config.partial
+      $config: []
+
+  Hippy\Api\Service\Base\OpenapiService:
+    arguments:
+      $transformers: !tagged_iterator hippy.openapi.transformer
+
+  Hippy\Api\Service\Base\CheckService:
+    arguments:
+      $checks: !tagged_iterator hippy.check.handler
+
+  Hippy\Api\Transformer\Logging\Transformer:
+    arguments:
+      $strategies: !tagged_iterator hippy.logging.strategy

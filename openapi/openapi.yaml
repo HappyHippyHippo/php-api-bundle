@@ -1,0 +1,17 @@
+openapi: 3.0.0
+
+info:
+  title: Placeholder file
+  description:
+    API layer used to authenticate a user in the Hippy ecosystem.
+  version: unknown
+
+paths:
+  /:
+    $ref: 'paths/__index.yaml'
+  /__check:
+    $ref: 'paths/__check.yaml'
+  /__openapi:
+    $ref: 'paths/__openapi.yaml'
+  /__config:
+    $ref: 'paths/__config.yaml'
