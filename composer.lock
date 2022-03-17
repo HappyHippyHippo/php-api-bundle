@@ -1843,11 +1843,11 @@
         },
         {
             "name": "happyhippyhippo/php-skeleton-bundle",
-            "version": "1.1.2",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "git@github.com:HappyHippyHippo/php-skeleton-bundle.git",
-                "reference": "6969bd9ffe1c3eaf83dca130bdd9da07692c57fe"
+                "reference": "4fda1078c891e814dd4fead3367b5ff8baeefc0e"
             },
             "require": {
                 "ext-ctype": "*",
@@ -1903,7 +1903,7 @@
                 "proprietary"
             ],
             "description": "PHP applications and bundles base classes and services",
-            "time": "2022-03-17T04:04:33+00:00"
+            "time": "2022-03-17T09:15:30+00:00"
         },
         {
             "name": "laminas/laminas-code",

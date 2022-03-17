@@ -17,6 +17,15 @@ class ApiConfig extends Model
     }
 
     /**
+     * @param string $path
+     * @return mixed
+     */
+    public function get(string $path): mixed
+    {
+        return $this->config->get($path);
+    }
+
+    /**
      * @return string
      */
     public function getRoot(): string
@@ -342,14 +351,5 @@ class ApiConfig extends Model
     public function jsonSerialize(): array
     {
         return $this->config->jsonSerialize();
-    }
-
-    /**
-     * @param string $path
-     * @return mixed
-     */
-    protected function get(string $path): mixed
-    {
-        return $this->config->get($path);
     }
 }
