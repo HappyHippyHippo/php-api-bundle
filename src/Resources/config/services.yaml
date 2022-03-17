@@ -12,16 +12,16 @@ services:
     public: false
 
   _instanceof:
-    hippy\Config\Partial\PartialInterface:
+    Hippy\Config\Partial\PartialInterface:
       tags: [hippy.config.partial]
-    hippy\Api\Service\Base\Check\CheckInterface:
+    Hippy\Api\Service\Base\Check\CheckInterface:
       tags: [hippy.check.handler]
-    hippy\Api\Transformer\OpenApi\TransformerInterface:
+    Hippy\Api\Transformer\OpenApi\TransformerInterface:
       tags: [hippy.openapi.transformer]
-    hippy\Api\Transformer\Logging\Strategy\StrategyInterface:
+    Hippy\Api\Transformer\Logging\Strategy\StrategyInterface:
       tags: [hippy.logging.strategy]
 
-  hippy\Api\:
+  Hippy\Api\:
     resource: '../../'
     exclude:
       - '../../DependencyInjection/'
@@ -29,30 +29,30 @@ services:
       - '../../Kernel.php'
       - '../tests/'
 
-  hippy\Api\Controller\:
+  Hippy\Api\Controller\:
     resource: '../../Controller'
     tags: ['controller.service_arguments']
 
-  hippy\Api\Listener\ExceptionStrategy\UnhandledExceptionStrategy:
+  Hippy\Api\Listener\ExceptionStrategy\UnhandledExceptionStrategy:
     tags: [{ name: hippy.exception.strategy, priority: 0 }]
-  hippy\Api\Listener\ExceptionStrategy\UnhandledHttpExceptionStrategy:
+  Hippy\Api\Listener\ExceptionStrategy\UnhandledHttpExceptionStrategy:
     tags: [{ name: hippy.exception.strategy, priority: 1 }]
-  hippy\Api\Listener\ExceptionStrategy\MethodNotAllowedExceptionStrategy:
+  Hippy\Api\Listener\ExceptionStrategy\MethodNotAllowedExceptionStrategy:
     tags: [{ name: hippy.exception.strategy, priority: 2 }]
-  hippy\Api\Listener\ExceptionStrategy\ServiceExceptionStrategy:
+  Hippy\Api\Listener\ExceptionStrategy\ServiceExceptionStrategy:
     tags: [{ name: hippy.exception.strategy, priority: 5 }]
-  hippy\Api\Listener\ExceptionEventSubscriber:
+  Hippy\Api\Listener\ExceptionEventSubscriber:
     arguments:
       $strategies: !tagged_iterator hippy.exception.strategy
 
-  hippy\Api\Service\Base\OpenapiService:
+  Hippy\Api\Service\Base\OpenapiService:
     arguments:
       $transformers: !tagged_iterator hippy.openapi.transformer
 
-  hippy\Api\Service\Base\CheckService:
+  Hippy\Api\Service\Base\CheckService:
     arguments:
       $checks: !tagged_iterator hippy.check.handler
 
-  hippy\Api\Transformer\Logging\Transformer:
+  Hippy\Api\Transformer\Logging\Transformer:
     arguments:
       $strategies: !tagged_iterator hippy.logging.strategy
