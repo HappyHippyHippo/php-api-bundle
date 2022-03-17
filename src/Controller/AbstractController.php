@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Controller;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 use Hippy\Api\Error\ErrorCode;
 use Hippy\Error\Error;
 use Hippy\Exception\Exception;
@@ -15,11 +15,11 @@ use Symfony\Component\HttpFoundation\Response;
 abstract class AbstractController extends BaseAbstractController
 {
     /**
-     * @param ApiConfigInterface $config
+     * @param ApiConfig $config
      * @param int|string $endpointCode
      */
     public function __construct(
-        protected ApiConfigInterface $config,
+        protected ApiConfig $config,
         protected int|string $endpointCode = '',
     ) {
     }
@@ -28,7 +28,7 @@ abstract class AbstractController extends BaseAbstractController
      * @param int|string $endpointCode
      * @return $this
      */
-    protected function setEndpointCode(int|string $endpointCode): AbstractController
+    protected function setEndpointCode(int|string $endpointCode): self
     {
         $this->endpointCode = $endpointCode;
         return $this;
@@ -97,7 +97,7 @@ abstract class AbstractController extends BaseAbstractController
         } catch (Exception $exception) {
             $exception->getErrors()->each(function (Error $error) {
                 return $error
-                    ->setService((int) $this->config->getAppId())
+                    ->setService($this->config->getAppId())
                     ->setEndpoint($this->endpointCode);
             });
             throw $exception;

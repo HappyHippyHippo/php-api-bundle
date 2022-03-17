@@ -6,7 +6,7 @@ use Hippy\Api\Listener\ExceptionStrategy\ServiceExceptionStrategy;
 use Hippy\Api\Tests\Unit\Listener\EventCreatorTrait;
 use Hippy\Error\Error;
 use Hippy\Exception\Exception as ServiceException;
-use Hippy\Model\ModelInterface;
+use Hippy\Model\Model;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -106,7 +106,7 @@ class ServiceExceptionStrategyTest extends TestCase
             'data' => $data
         ];
 
-        $model = $this->createMock(ModelInterface::class);
+        $model = $this->createMock(Model::class);
         $model->expects($this->once())->method('jsonSerialize')->willReturn($data);
 
         $exception = new ServiceException($statusCode);

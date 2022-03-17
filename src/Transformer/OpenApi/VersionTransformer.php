@@ -2,14 +2,14 @@
 
 namespace Hippy\Api\Transformer\OpenApi;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 
 class VersionTransformer implements TransformerInterface
 {
     /**
-     * @param ApiConfigInterface $config
+     * @param ApiConfig $config
      */
-    public function __construct(protected ApiConfigInterface $config)
+    public function __construct(protected ApiConfig $config)
     {
     }
 

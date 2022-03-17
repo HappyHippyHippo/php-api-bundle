@@ -53,6 +53,6 @@ class AbstractDefaultStrategyTest extends TestCase
         $prop = new ReflectionProperty(InjectResponseBodyDecorator::class, 'expectedStatusCode');
         $this->assertEquals($statusCode, $prop->getValue($decorators[2]));
 
-        $this->assertEquals($priority, $sut->priority());
+        $this->assertEquals($priority, $sut->getPriority());
     }
 }

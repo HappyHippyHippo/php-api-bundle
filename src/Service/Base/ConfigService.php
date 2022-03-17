@@ -4,14 +4,14 @@ namespace Hippy\Api\Service\Base;
 
 use Hippy\Api\Model\Controller\Config\ConfigResponse;
 use Hippy\Api\Service\AbstractService;
-use Hippy\Config\ConfigInterface;
+use Hippy\Config\Config;
 
 class ConfigService extends AbstractService
 {
     /**
-     * @param ConfigInterface $config
+     * @param Config $config
      */
-    public function __construct(protected ConfigInterface $config)
+    public function __construct(protected Config $config)
     {
     }
 

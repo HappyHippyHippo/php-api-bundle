@@ -61,7 +61,10 @@ class CheckServiceTest extends TestCase
             ->with($this->isInstanceOf(CheckResponse::class))
             ->willReturn(true);
 
-        $request = $this->createMock(CheckRequest::class);
+        $request = $this->getMockBuilder(CheckRequest::class)
+            ->addMethods(['isDeep'])
+            ->disableOriginalConstructor()
+            ->getMock();
         $request->expects($this->once())->method('isDeep')->willReturn(true);
 
         $sut = new CheckService([$check1, $check2]);
@@ -87,7 +90,10 @@ class CheckServiceTest extends TestCase
             ->with($this->isInstanceOf(CheckResponse::class))
             ->willReturn(true);
 
-        $request = $this->createMock(CheckRequest::class);
+        $request = $this->getMockBuilder(CheckRequest::class)
+            ->addMethods(['isDeep'])
+            ->disableOriginalConstructor()
+            ->getMock();
         $request->expects($this->once())->method('isDeep')->willReturn(true);
 
         $sut = new CheckService([$check1, $check2]);
@@ -113,7 +119,10 @@ class CheckServiceTest extends TestCase
             ->with($this->isInstanceOf(CheckResponse::class))
             ->willReturn(true);
 
-        $request = $this->createMock(CheckRequest::class);
+        $request = $this->getMockBuilder(CheckRequest::class)
+            ->addMethods(['isDeep'])
+            ->disableOriginalConstructor()
+            ->getMock();
         $request->expects($this->once())->method('isDeep')->willReturn(false);
 
         $sut = new CheckService([$check1, $check2]);

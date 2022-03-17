@@ -6,6 +6,9 @@ use Closure;
 use Hippy\Api\Model\Controller\Check\CheckResponse;
 use Exception;
 
+/**
+ * @method string getName()
+ */
 abstract class AbstractApiConnectionCheck implements CheckInterface
 {
     /** @var string */

@@ -44,11 +44,12 @@ class FallbackStrategyTest extends TestCase
 
     /**
      * @return void
-     * @covers ::priority
+     * @covers ::__construct
+     * @covers ::getPriority
      */
-    public function testPriority(): void
+    public function testGetPriority(): void
     {
-        $this->assertEquals(-10, $this->sut->priority());
+        $this->assertEquals(-10, $this->sut->getPriority());
     }
 
     /**

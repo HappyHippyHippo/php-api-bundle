@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Tests\Unit\Controller\Base;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 use Hippy\Api\Controller\Base\OpenapiController;
 use Hippy\Api\Service\Base\OpenapiService;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -13,8 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
 /** @coversDefaultClass \Hippy\Api\Controller\Base\OpenapiController */
 class OpenapiControllerTest extends TestCase
 {
-    /** @var ApiConfigInterface&MockObject */
-    private ApiConfigInterface $config;
+    /** @var ApiConfig&MockObject */
+    private ApiConfig $config;
 
     /** @var OpenapiService&MockObject */
     private OpenapiService $service;
@@ -27,7 +27,7 @@ class OpenapiControllerTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->config = $this->createMock(ApiConfigInterface::class);
+        $this->config = $this->createMock(ApiConfig::class);
         $this->service = $this->createMock(OpenapiService::class);
         $this->sut = $this->getMockBuilder(OpenapiController::class)
             ->setConstructorArgs([$this->config, $this->service])

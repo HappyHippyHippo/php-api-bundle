@@ -3,15 +3,15 @@
 namespace Hippy\Api\Tests\Unit\Service\Base;
 
 use Hippy\Api\Service\Base\ConfigService;
-use Hippy\Config\ConfigInterface;
+use Hippy\Config\Config;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /** @coversDefaultClass \Hippy\Api\Service\Base\ConfigService */
 class ConfigServiceTest extends TestCase
 {
-    /** @var ConfigInterface&MockObject */
-    private ConfigInterface $config;
+    /** @var Config&MockObject */
+    private Config $config;
 
     /** @var ConfigService */
     private ConfigService $sut;
@@ -21,7 +21,7 @@ class ConfigServiceTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->config = $this->createMock(ConfigInterface::class);
+        $this->config = $this->createMock(Config::class);
         $this->sut = new ConfigService($this->config);
     }
 

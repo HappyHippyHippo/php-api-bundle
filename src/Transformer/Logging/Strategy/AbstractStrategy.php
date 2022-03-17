@@ -33,7 +33,7 @@ abstract class AbstractStrategy implements StrategyInterface
     /**
      * @return int
      */
-    public function priority(): int
+    public function getPriority(): int
     {
         return $this->priority;
     }

@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Tests\Unit\Controller\Base;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 use Hippy\Api\Controller\Base\ConfigController;
 use Hippy\Api\Model\Controller\Config\ConfigResponse;
 use Hippy\Api\Service\Base\ConfigService;
@@ -16,8 +16,8 @@ use Symfony\Component\HttpFoundation\Response;
 /** @coversDefaultClass \Hippy\Api\Controller\Base\ConfigController */
 class ConfigControllerTest extends TestCase
 {
-    /** @var ApiConfigInterface&MockObject */
-    private ApiConfigInterface $config;
+    /** @var ApiConfig&MockObject */
+    private ApiConfig $config;
 
     /** @var ConfigService&MockObject */
     private ConfigService $service;
@@ -30,7 +30,7 @@ class ConfigControllerTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->config = $this->createMock(ApiConfigInterface::class);
+        $this->config = $this->createMock(ApiConfig::class);
         $this->service = $this->createMock(ConfigService::class);
         $this->sut = $this->getMockBuilder(ConfigController::class)
             ->setConstructorArgs([$this->config, $this->service])

@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Tests\Unit\Validator;
 
-use Hippy\Api\Transformer\Validator\ViolationTransformerInterface;
+use Hippy\Api\Transformer\Validator\TransformerInterface;
 use Hippy\Api\Validator\AbstractValidator;
 use Hippy\Error\Error;
 use Hippy\Error\ErrorCollection;
@@ -24,8 +24,8 @@ class AbstractValidatorTest extends TestCase
     /** @var SymfonyValidatorInterface&MockObject */
     private SymfonyValidatorInterface $validator;
 
-    /** @var ViolationTransformerInterface&MockObject */
-    private ViolationTransformerInterface $transformer;
+    /** @var TransformerInterface&MockObject */
+    private TransformerInterface $transformer;
 
     /** @var AbstractValidator&MockObject */
     private AbstractValidator $sut;
@@ -36,7 +36,7 @@ class AbstractValidatorTest extends TestCase
     protected function setUp(): void
     {
         $this->validator = $this->createMock(SymfonyValidatorInterface::class);
-        $this->transformer = $this->createMock(ViolationTransformerInterface::class);
+        $this->transformer = $this->createMock(TransformerInterface::class);
         $this->sut = $this->getMockForAbstractClass(AbstractValidator::class, [$this->validator]);
     }
 

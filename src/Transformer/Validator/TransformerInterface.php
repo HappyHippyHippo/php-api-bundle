@@ -3,10 +3,10 @@
 namespace Hippy\Api\Transformer\Validator;
 
 use Hippy\Error\ErrorCollection;
-use Hippy\Error\ErrorInterface;
+use Hippy\Error\Error;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 
-interface ViolationTransformerInterface
+interface TransformerInterface
 {
     /**
      * @param ErrorCollection|null $errors
@@ -16,7 +16,7 @@ interface ViolationTransformerInterface
 
     /**
      * @param ConstraintViolationInterface $violation
-     * @return ErrorInterface|null
+     * @return Error|null
      */
-    public function transform(ConstraintViolationInterface $violation): ?ErrorInterface;
+    public function transform(ConstraintViolationInterface $violation): ?Error;
 }

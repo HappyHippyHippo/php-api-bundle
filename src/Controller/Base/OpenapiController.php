@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Controller\Base;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 use Hippy\Api\Controller\AbstractController;
 use Hippy\Api\Service\Base\OpenapiService;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,11 +14,11 @@ class OpenapiController extends AbstractController
     private const ENDPOINT_CODE = 3;
 
     /**
-     * @param ApiConfigInterface $config
+     * @param ApiConfig $config
      * @param OpenapiService $service
      */
     public function __construct(
-        ApiConfigInterface $config,
+        ApiConfig $config,
         protected OpenapiService $service,
     ) {
         parent::__construct($config, self::ENDPOINT_CODE);

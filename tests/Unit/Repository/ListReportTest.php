@@ -16,7 +16,6 @@ class ListReportTest extends TestCase
      * @param string $expected
      * @return void
      * @covers ::__construct
-     * @covers ::getPrev
      * @dataProvider providerForPrevTests
      */
     public function testPrev(string $search, int $start, int $count, int $total, string $expected): void
@@ -76,7 +75,6 @@ class ListReportTest extends TestCase
      * @param string $expected
      * @return void
      * @covers ::__construct
-     * @covers ::getNext
      * @dataProvider providerForNextTests
      */
     public function testNext(string $search, int $start, int $count, int $total, string $expected): void
@@ -131,7 +129,6 @@ class ListReportTest extends TestCase
     /**
      * @return void
      * @covers ::__construct
-     * @covers ::getSearch
      */
     public function testGetSearch(): void
     {
@@ -142,7 +139,6 @@ class ListReportTest extends TestCase
     /**
      * @return void
      * @covers ::__construct
-     * @covers ::getStart
      */
     public function testGetStart(): void
     {
@@ -153,7 +149,6 @@ class ListReportTest extends TestCase
     /**
      * @return void
      * @covers ::__construct
-     * @covers ::getCount
      */
     public function testGetCount(): void
     {
@@ -164,7 +159,6 @@ class ListReportTest extends TestCase
     /**
      * @return void
      * @covers ::__construct
-     * @covers ::getTotal
      */
     public function testGetTotal(): void
     {

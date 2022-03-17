@@ -13,8 +13,6 @@ class IndexResponseTest extends TestCase
     /**
      * @return void
      * @covers ::__construct
-     * @covers ::getName
-     * @covers ::getVersion
      */
     public function testConstructor(): void
     {
@@ -32,7 +30,6 @@ class IndexResponseTest extends TestCase
     /**
      * @return void
      * @covers ::__construct
-     * @covers ::getRoutes
      */
     public function testRoutes(): void
     {

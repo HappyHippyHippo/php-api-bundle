@@ -6,9 +6,16 @@ use Hippy\Model\Model;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class RequestModel extends Model implements RequestModelInterface
+/**
+ * @method Request getRequest()
+ * @method string|null getHeaderRequestId()
+ */
+class RequestModel extends Model
 {
-    /** @var string|null */
+    /**
+     * @var string|null
+     * @Assert\NotBlank(message = "x-request-id header must be present")
+     */
     protected ?string $headerRequestId;
 
     /**
@@ -20,22 +27,6 @@ class RequestModel extends Model implements RequestModelInterface
 
         $this->headerRequestId = $this->searchHeader('x-request-id');
         $this->addHideParser('request');
-    }
-
-    /**
-     * @return Request
-     */
-    public function getRequest(): Request
-    {
-        return $this->request;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getHeaderRequestId(): ?string
-    {
-        return $this->headerRequestId ?? null;
     }
 
     /**

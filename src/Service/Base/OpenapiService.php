@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Service\Base;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 use Hippy\Api\Service\AbstractService;
 use Hippy\Api\Service\Base\OpenApi\ReaderInterface;
 use Hippy\Api\Service\Base\OpenApi\WriterInterface;
@@ -14,13 +14,13 @@ class OpenapiService extends AbstractService
     protected array $transformers;
 
     /**
-     * @param ApiConfigInterface $config
+     * @param ApiConfig $config
      * @param ReaderInterface $reader
      * @param WriterInterface $writer
      * @param TransformerInterface[] $transformers
      */
     public function __construct(
-        protected ApiConfigInterface $config,
+        protected ApiConfig $config,
         protected ReaderInterface $reader,
         protected WriterInterface $writer,
         iterable $transformers = [],

@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Listener\ExceptionStrategy;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 use Hippy\Api\Error\ErrorCode;
 use Hippy\Error\Error;
 use Hippy\Error\ErrorCollection;
@@ -17,9 +17,9 @@ use Throwable;
 class MethodNotAllowedExceptionStrategy implements StrategyInterface
 {
     /**
-     * @param ApiConfigInterface $config
+     * @param ApiConfig $config
      */
-    public function __construct(protected ApiConfigInterface $config)
+    public function __construct(protected ApiConfig $config)
     {
     }
 

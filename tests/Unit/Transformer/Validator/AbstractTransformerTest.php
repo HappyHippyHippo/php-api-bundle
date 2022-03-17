@@ -2,15 +2,15 @@
 
 namespace Hippy\Api\Tests\Unit\Transformer\Validator;
 
-use Hippy\Api\Transformer\Validator\AbstractViolationTransformer;
+use Hippy\Api\Transformer\Validator\AbstractTransformer;
 use Hippy\Error\ErrorCollection;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 
-/** @coversDefaultClass \Hippy\Api\Transformer\Validator\AbstractViolationTransformer */
-class AbstractViolationTransformerTest extends TestCase
+/** @coversDefaultClass \Hippy\Api\Transformer\Validator\AbstractTransformer */
+class AbstractTransformerTest extends TestCase
 {
     /**
      * @return void
@@ -21,7 +21,7 @@ class AbstractViolationTransformerTest extends TestCase
     {
         $parameter = '__dummy_parameter__';
 
-        $sut = $this->getMockForAbstractClass(AbstractViolationTransformer::class, [[]]);
+        $sut = $this->getMockForAbstractClass(AbstractTransformer::class, [[]]);
 
         $constraintViolation = $this->createMock(ConstraintViolationInterface::class);
         $constraintViolation->expects($this->once())->method('getPropertyPath')->willReturn($parameter);
@@ -42,7 +42,7 @@ class AbstractViolationTransformerTest extends TestCase
         $violationCode = NotBlank::IS_BLANK_ERROR;
         $violationMessage = '__dummy_error_message__';
 
-        $sut = $this->getMockForAbstractClass(AbstractViolationTransformer::class, [[$parameter => $parameterCode]]);
+        $sut = $this->getMockForAbstractClass(AbstractTransformer::class, [[$parameter => $parameterCode]]);
 
         $constraintViolation = $this->createMock(ConstraintViolationInterface::class);
         $constraintViolation->expects($this->once())->method('getPropertyPath')->willReturn($parameter);
@@ -72,7 +72,7 @@ class AbstractViolationTransformerTest extends TestCase
         $parameterCode = 123;
         $violationMessage = '__dummy_error_message__';
 
-        $sut = $this->getMockForAbstractClass(AbstractViolationTransformer::class, [[$parameter => $parameterCode]]);
+        $sut = $this->getMockForAbstractClass(AbstractTransformer::class, [[$parameter => $parameterCode]]);
 
         $constraintViolation = $this->createMock(ConstraintViolationInterface::class);
         $constraintViolation->expects($this->once())->method('getPropertyPath')->willReturn($parameter);
@@ -103,7 +103,7 @@ class AbstractViolationTransformerTest extends TestCase
         $violationCode = NotBlank::IS_BLANK_ERROR;
         $violationMessage = '__dummy_error_message__';
 
-        $sut = $this->getMockForAbstractClass(AbstractViolationTransformer::class, [[$parameter => $parameterCode]]);
+        $sut = $this->getMockForAbstractClass(AbstractTransformer::class, [[$parameter => $parameterCode]]);
 
         $constraintViolation = $this->createMock(ConstraintViolationInterface::class);
         $constraintViolation->expects($this->once())->method('getPropertyPath')->willReturn($parameterPath);
@@ -128,7 +128,7 @@ class AbstractViolationTransformerTest extends TestCase
     public function testGetStatusCodeReturnDefaultBadRequestStatusCode(): void
     {
         $errors = $this->createMock(ErrorCollection::class);
-        $sut = $this->getMockForAbstractClass(AbstractViolationTransformer::class, [[]]);
+        $sut = $this->getMockForAbstractClass(AbstractTransformer::class, [[]]);
         $this->assertEquals(Response::HTTP_BAD_REQUEST, $sut->getStatusCode($errors));
     }
 }

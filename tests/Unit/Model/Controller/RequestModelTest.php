@@ -25,7 +25,6 @@ class RequestModelTest extends TestCase
     /**
      * @return void
      * @covers ::__construct
-     * @covers ::getRequest
      */
     public function testGetRequest(): void
     {
@@ -39,7 +38,6 @@ class RequestModelTest extends TestCase
      * @return void
      * @covers ::__construct
      * @covers ::searchHeader
-     * @covers ::getHeaderRequestId
      */
     public function testGetHeaderRequestId(): void
     {
@@ -55,7 +53,6 @@ class RequestModelTest extends TestCase
      * @return void
      * @covers ::__construct
      * @covers ::searchHeader
-     * @covers ::getHeaderRequestId
      */
     public function testSearchHeaderIgnoreNullHeaderObject(): void
     {
@@ -69,7 +66,6 @@ class RequestModelTest extends TestCase
      * @return void
      * @covers ::__construct
      * @covers ::searchHeader
-     * @covers ::getHeaderRequestId
      */
     public function testSearchHeaderIgnoreEmptyHeaderObject(): void
     {

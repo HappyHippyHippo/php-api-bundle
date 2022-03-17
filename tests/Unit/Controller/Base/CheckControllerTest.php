@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Tests\Unit\Controller\Base;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 use Hippy\Api\Controller\Base\CheckController;
 use Hippy\Api\Model\Controller\Check\CheckRequest;
 use Hippy\Api\Model\Controller\Check\CheckResponse;
@@ -20,8 +20,8 @@ use Symfony\Component\HttpFoundation\Response;
 /** @coversDefaultClass \Hippy\Api\Controller\Base\CheckController */
 class CheckControllerTest extends TestCase
 {
-    /** @var ApiConfigInterface&MockObject  */
-    private ApiConfigInterface $config;
+    /** @var ApiConfig&MockObject  */
+    private ApiConfig $config;
 
     /** @var CheckService&MockObject */
     private CheckService $service;
@@ -34,7 +34,7 @@ class CheckControllerTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->config = $this->createMock(ApiConfigInterface::class);
+        $this->config = $this->createMock(ApiConfig::class);
         $this->service = $this->createMock(CheckService::class);
         $this->sut = $this->getMockBuilder(CheckController::class)
             ->setConstructorArgs([$this->config, $this->service])

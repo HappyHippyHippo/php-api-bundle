@@ -3,8 +3,7 @@
 namespace Hippy\Api\Tests\Unit\Config;
 
 use Hippy\Api\Config\ApiConfig;
-use Hippy\Config\Config as BaseConfig;
-use Hippy\Config\ConfigInterface;
+use Hippy\Config\Config;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;
 use TypeError;
@@ -20,7 +19,10 @@ class ApiConfigTest extends TestCase
     public function testGetRoot(): void
     {
         $value = '__dummy_root__';
-        $base = $this->createMock(ConfigInterface::class);
+        $base = $this->getMockBuilder(Config::class)
+            ->addMethods(['getRoot'])
+            ->disableOriginalConstructor()
+            ->getMock();
         $base->expects($this->once())->method('getRoot')->willReturn($value);
         $sut = new ApiConfig($base);
 
@@ -63,7 +65,7 @@ class ApiConfigTest extends TestCase
      */
     public function testPartialRequest(string $method, string $path, mixed $expected): void
     {
-        $base = $this->createMock(ConfigInterface::class);
+        $base = $this->createMock(Config::class);
         $base->expects($this->once())->method('get')->with($path)->willReturn($expected);
         $sut = new ApiConfig($base);
 
@@ -107,7 +109,7 @@ class ApiConfigTest extends TestCase
      */
     public function testPartialExceptionRequest(string $method, string $path, mixed $value, string $expected): void
     {
-        $base = $this->createMock(ConfigInterface::class);
+        $base = $this->createMock(Config::class);
         $base->expects($this->once())->method('get')->with($path)->willReturn($value);
         $sut = new ApiConfig($base);
 
@@ -124,7 +126,7 @@ class ApiConfigTest extends TestCase
     public function testJsonSerialize(): void
     {
         $serialized = ['__dummy_value__'];
-        $base = $this->createMock(BaseConfig::class);
+        $base = $this->createMock(Config::class);
         $base->expects($this->once())->method('jsonSerialize')->willReturn($serialized);
         $sut = new ApiConfig($base);
 

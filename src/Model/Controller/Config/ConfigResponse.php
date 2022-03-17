@@ -2,24 +2,19 @@
 
 namespace Hippy\Api\Model\Controller\Config;
 
-use Hippy\Config\ConfigInterface;
+use Hippy\Config\Config;
 use Hippy\Model\Model;
 
+/**
+ * @method Config getConfig()
+ */
 class ConfigResponse extends Model
 {
     /**
-     * @param ConfigInterface $config
+     * @param Config $config
      */
-    public function __construct(protected ConfigInterface $config)
+    public function __construct(protected Config $config)
     {
         parent::__construct();
-    }
-
-    /**
-     * @return ConfigInterface
-     */
-    public function getConfig(): ConfigInterface
-    {
-        return $this->config;
     }
 }

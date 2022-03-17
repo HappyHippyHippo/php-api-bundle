@@ -48,11 +48,11 @@ class AbstractStrategyTest extends TestCase
     /**
      * @return void
      * @covers ::__construct
-     * @covers ::priority
+     * @covers ::getPriority
      */
-    public function testPriority(): void
+    public function testGetPriority(): void
     {
-        $this->assertEquals($this->priority, $this->sut->priority());
+        $this->assertEquals($this->priority, $this->sut->getPriority());
     }
 
     /**

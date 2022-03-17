@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Listener;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -20,9 +20,9 @@ class VersionEventSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param ApiConfigInterface $config
+     * @param ApiConfig $config
      */
-    public function __construct(protected ApiConfigInterface $config)
+    public function __construct(protected ApiConfig $config)
     {
     }
 

@@ -2,16 +2,16 @@
 
 namespace Hippy\Api\Config;
 
-use Hippy\Config\ConfigInterface as BaseConfigInterface;
+use Hippy\Config\Config;
 use Hippy\Model\Model;
 use TypeError;
 
-class ApiConfig extends Model implements ApiConfigInterface
+class ApiConfig extends Model
 {
     /**
-     * @param BaseConfigInterface $config
+     * @param Config $config
      */
-    public function __construct(protected BaseConfigInterface $config)
+    public function __construct(protected Config $config)
     {
         parent::__construct();
     }

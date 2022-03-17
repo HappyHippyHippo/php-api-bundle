@@ -4,7 +4,15 @@ namespace Hippy\Api\Repository;
 
 use Hippy\Model\Model;
 
-class ListReport extends Model implements ListReportInterface
+/**
+ * @method string getSearch()
+ * @method int getStart()
+ * @method int getCount()
+ * @method int getTotal()
+ * @method string getPrev()
+ * @method string getNext()
+ */
+class ListReport extends Model
 {
     /** @var string */
     protected string $prev;
@@ -31,53 +39,5 @@ class ListReport extends Model implements ListReportInterface
 
         $this->prev = $prev != $start ? sprintf("?search=%s&start=%d&count=%d", $search, $prev, $count) : '';
         $this->next = $next != $start ? sprintf("?search=%s&start=%d&count=%d", $search, $next, $count) : '';
-    }
-
-    /**
-     * @return string
-     */
-    public function getSearch(): string
-    {
-        return $this->search;
-    }
-
-    /**
-     * @return int
-     */
-    public function getStart(): int
-    {
-        return $this->start;
-    }
-
-    /**
-     * @return int
-     */
-    public function getCount(): int
-    {
-        return $this->count;
-    }
-
-    /**
-     * @return int
-     */
-    public function getTotal(): int
-    {
-        return $this->total;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPrev(): string
-    {
-        return $this->prev;
-    }
-
-    /**
-     * @return string
-     */
-    public function getNext(): string
-    {
-        return $this->next;
     }
 }

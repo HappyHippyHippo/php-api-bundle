@@ -2,23 +2,23 @@
 
 namespace Hippy\Api\Repository;
 
-use Hippy\Model\CollectionInterface;
+use Hippy\Model\Collection;
 use Hippy\Model\Model;
 
-class ListResult extends Model implements ListResultInterface
+class ListResult extends Model
 {
-    /** @var ListReportInterface */
-    protected ListReportInterface $report;
+    /** @var ListReport */
+    protected ListReport $report;
 
     /**
-     * @param CollectionInterface $collection
+     * @param Collection $collection
      * @param string $search
      * @param int $start
      * @param int $count
      * @param int $total
      */
     public function __construct(
-        protected CollectionInterface $collection,
+        protected Collection $collection,
         string $search,
         int $start,
         int $count,
@@ -29,17 +29,17 @@ class ListResult extends Model implements ListResultInterface
     }
 
     /**
-     * @return CollectionInterface
+     * @return Collection
      */
-    public function getCollection(): CollectionInterface
+    public function getCollection(): Collection
     {
         return $this->collection;
     }
 
     /**
-     * @return ListReportInterface
+     * @return ListReport
      */
-    public function getReport(): ListReportInterface
+    public function getReport(): ListReport
     {
         return $this->report;
     }

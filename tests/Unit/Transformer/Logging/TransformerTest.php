@@ -51,11 +51,11 @@ class TransformerTest extends TestCase
     public function testConstructor(): void
     {
         $strategy1 = $this->createMock(StrategyInterface::class);
-        $strategy1->method('priority')->willReturn(2);
+        $strategy1->method('getPriority')->willReturn(2);
         $strategy2 = $this->createMock(StrategyInterface::class);
-        $strategy2->method('priority')->willReturn(3);
+        $strategy2->method('getPriority')->willReturn(3);
         $strategy3 = $this->createMock(StrategyInterface::class);
-        $strategy3->method('priority')->willReturn(1);
+        $strategy3->method('getPriority')->willReturn(1);
 
         $sut = new Transformer([$strategy1, $strategy2, $strategy3]);
 

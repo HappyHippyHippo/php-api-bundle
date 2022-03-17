@@ -4,12 +4,11 @@ namespace Hippy\Api\Transformer\Validator;
 
 use Hippy\Error\Error;
 use Hippy\Error\ErrorCollection;
-use Hippy\Error\ErrorInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 
-abstract class AbstractViolationTransformer implements ViolationTransformerInterface
+abstract class AbstractTransformer implements TransformerInterface
 {
     /** @var array<string, int> */
     public const VIOLATION_TO_ERROR_CODE = [
@@ -133,10 +132,19 @@ abstract class AbstractViolationTransformer implements ViolationTransformerInter
     }
 
     /**
-     * @param ConstraintViolationInterface $violation
-     * @return ErrorInterface|null
+     * @param ErrorCollection|null $errors
+     * @return int
      */
-    public function transform(ConstraintViolationInterface $violation): ?ErrorInterface
+    public function getStatusCode(?ErrorCollection $errors = null): int
+    {
+        return Response::HTTP_BAD_REQUEST;
+    }
+
+    /**
+     * @param ConstraintViolationInterface $violation
+     * @return Error|null
+     */
+    public function transform(ConstraintViolationInterface $violation): ?Error
     {
         $path = preg_replace('/\[.*?\]/', '', $violation->getPropertyPath());
         if (!isset($this->paramMap[$path])) {
@@ -147,15 +155,6 @@ abstract class AbstractViolationTransformer implements ViolationTransformerInter
             $this->violationToErrorCode($violation->getCode() ?? Assert\Type::INVALID_TYPE_ERROR),
             $violation->getMessage()
         ))->setParam($this->paramMap[$path]);
-    }
-
-    /**
-     * @param ErrorCollection|null $errors
-     * @return int
-     */
-    public function getStatusCode(?ErrorCollection $errors = null): int
-    {
-        return Response::HTTP_BAD_REQUEST;
     }
 
     /**

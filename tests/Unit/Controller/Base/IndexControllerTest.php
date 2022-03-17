@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Tests\Unit\Controller\Base;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 use Hippy\Api\Controller\Base\IndexController;
 use Hippy\Api\Model\Controller\Index\IndexResponse;
 use Hippy\Api\Service\Base\IndexService;
@@ -16,8 +16,8 @@ use Symfony\Component\HttpFoundation\Response;
 /** @coversDefaultClass \Hippy\Api\Controller\Base\IndexController */
 class IndexControllerTest extends TestCase
 {
-    /** @var ApiConfigInterface&MockObject */
-    private ApiConfigInterface $config;
+    /** @var ApiConfig&MockObject */
+    private ApiConfig $config;
 
     /** @var IndexService&MockObject */
     private IndexService $service;
@@ -30,7 +30,7 @@ class IndexControllerTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->config = $this->createMock(ApiConfigInterface::class);
+        $this->config = $this->createMock(ApiConfig::class);
         $this->service = $this->createMock(IndexService::class);
         $this->sut = $this->getMockBuilder(IndexController::class)
             ->setConstructorArgs([$this->config, $this->service])

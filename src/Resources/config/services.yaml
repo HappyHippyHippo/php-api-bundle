@@ -12,7 +12,7 @@ services:
     public: false
 
   _instanceof:
-    Hippy\Config\Partial\PartialInterface:
+    Hippy\Config\Partial\Partial:
       tags: [Hippy.config.partial]
     Hippy\Api\Service\Base\Check\CheckInterface:
       tags: [Hippy.check.handler]

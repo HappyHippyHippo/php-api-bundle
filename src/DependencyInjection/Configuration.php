@@ -9,6 +9,9 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 /** @codeCoverageIgnore */
 class Configuration implements ConfigurationInterface
 {
+    /**
+     * @return TreeBuilder
+     */
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('hippy_api');
@@ -26,6 +29,9 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 
+    /**
+     * @return NodeDefinition
+     */
     private function addAccessAllowList(): NodeDefinition
     {
         $treeBuilder = new TreeBuilder('allow');
@@ -42,6 +48,9 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
+    /**
+     * @return NodeDefinition
+     */
     private function addAccessDenyList(): NodeDefinition
     {
         $treeBuilder = new TreeBuilder('deny');
@@ -58,6 +67,9 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
+    /**
+     * @return NodeDefinition
+     */
     private function addAccess(): NodeDefinition
     {
         $treeBuilder = new TreeBuilder('access');
@@ -68,6 +80,9 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
+    /**
+     * @return NodeDefinition
+     */
     private function addApp(): NodeDefinition
     {
         $treeBuilder = new TreeBuilder('app');
@@ -79,6 +94,9 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
+    /**
+     * @return NodeDefinition
+     */
     private function addEndpointConfig(): NodeDefinition
     {
         $treeBuilder = new TreeBuilder('config');
@@ -88,6 +106,9 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
+    /**
+     * @return NodeDefinition
+     */
     private function addEndpointOpenApi(): NodeDefinition
     {
         $treeBuilder = new TreeBuilder('openapi');
@@ -101,6 +122,9 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
+    /**
+     * @return NodeDefinition
+     */
     private function addEndpoint(): NodeDefinition
     {
         $treeBuilder = new TreeBuilder('endpoint');
@@ -111,6 +135,9 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
+    /**
+     * @return NodeDefinition
+     */
     private function addCors(): NodeDefinition
     {
         $treeBuilder = new TreeBuilder('cors');
@@ -121,6 +148,9 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
+    /**
+     * @return NodeDefinition
+     */
     private function addErrors(): NodeDefinition
     {
         $treeBuilder = new TreeBuilder('errors');
@@ -134,6 +164,9 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
+    /**
+     * @return NodeDefinition
+     */
     private function addLoggingElement(string $name, string $default = 'info'): NodeDefinition
     {
         $treeBuilder = new TreeBuilder($name);
@@ -157,6 +190,9 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
+    /**
+     * @return NodeDefinition
+     */
     private function addLog(): NodeDefinition
     {
         $treeBuilder = new TreeBuilder('log');
@@ -168,6 +204,9 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
+    /**
+     * @return NodeDefinition
+     */
     private function addVersion(): NodeDefinition
     {
         $treeBuilder = new TreeBuilder('version');

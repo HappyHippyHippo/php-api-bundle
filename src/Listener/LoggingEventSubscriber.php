@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Listener;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 use Hippy\Api\Transformer\Logging\TransformerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -26,12 +26,12 @@ class LoggingEventSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param ApiConfigInterface $config
+     * @param ApiConfig $config
      * @param TransformerInterface $transformer
      * @param LoggerInterface $logger
      */
     public function __construct(
-        protected ApiConfigInterface $config,
+        protected ApiConfig $config,
         protected TransformerInterface $transformer,
         protected LoggerInterface $logger
     ) {

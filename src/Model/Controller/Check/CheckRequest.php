@@ -5,6 +5,9 @@ namespace Hippy\Api\Model\Controller\Check;
 use Hippy\Api\Model\Controller\RequestModel;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * @method bool isDeep()
+ */
 class CheckRequest extends RequestModel
 {
     /** @var bool|null */
@@ -18,13 +21,5 @@ class CheckRequest extends RequestModel
         parent::__construct($request);
 
         $this->deep = (bool) $request->query->get('deep', true);
-    }
-
-    /**
-     * @return bool
-     */
-    public function isDeep(): bool
-    {
-        return $this->deep ?? false;
     }
 }

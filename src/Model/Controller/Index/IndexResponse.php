@@ -5,6 +5,11 @@ namespace Hippy\Api\Model\Controller\Index;
 use Hippy\Model\Model;
 use Symfony\Component\Routing\RouteCollection;
 
+/**
+ * @method string getName()
+ * @method string getVersion()
+ * @method array<string, string> getRoutes()
+ */
 class IndexResponse extends Model
 {
     /** @var array<string, string> */
@@ -31,29 +36,5 @@ class IndexResponse extends Model
             }
         }
         ksort($this->routes);
-    }
-
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getVersion(): string
-    {
-        return $this->version;
-    }
-
-    /**
-     * @return array<string, string>
-     */
-    public function getRoutes(): array
-    {
-        return $this->routes;
     }
 }

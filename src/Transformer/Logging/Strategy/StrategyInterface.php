@@ -11,7 +11,7 @@ interface StrategyInterface
     /**
      * @return int
      */
-    public function priority(): int;
+    public function getPriority(): int;
 
     /**
      * @param Request $request

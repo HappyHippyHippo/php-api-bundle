@@ -26,7 +26,7 @@ class InjectResponseBodyDecorator extends AbstractDecorator
      * @param int $expectedStatusCode
      * @return $this
      */
-    public function setExpectedStateCode(int $expectedStatusCode): InjectResponseBodyDecorator
+    public function setExpectedStateCode(int $expectedStatusCode): self
     {
         $this->expectedStatusCode = $expectedStatusCode;
         return $this;

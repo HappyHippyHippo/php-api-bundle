@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Controller\Base;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 use Hippy\Api\Controller\AbstractController;
 use Hippy\Api\Model\Controller\Check\CheckRequest;
 use Hippy\Api\Service\Base\CheckService;
@@ -16,11 +16,11 @@ class CheckController extends AbstractController
     private const ENDPOINT_CODE = 2;
 
     /**
-     * @param ApiConfigInterface $config
+     * @param ApiConfig $config
      * @param CheckService $service
      */
     public function __construct(
-        ApiConfigInterface $config,
+        ApiConfig $config,
         protected CheckService $service,
     ) {
         parent::__construct($config, self::ENDPOINT_CODE);

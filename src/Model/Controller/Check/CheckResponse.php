@@ -4,6 +4,9 @@ namespace Hippy\Api\Model\Controller\Check;
 
 use Hippy\Model\Model;
 
+/**
+ * @method array<string, array<int|string, mixed>> getChecks()
+ */
 class CheckResponse extends Model
 {
     /** @var array<string, array<int|string, mixed>> */
@@ -21,9 +24,8 @@ class CheckResponse extends Model
         bool $success,
         string $message,
         array $extra = []
-    ): CheckResponse {
+    ): self {
         $this->checks[$name] = array_merge(['success' => $success, 'message' => $message], $extra);
-
         return $this;
     }
 }

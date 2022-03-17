@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Tests\Unit\Controller;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 use Hippy\Api\Controller\AbstractController;
 use Hippy\Error\Error;
 use Hippy\Exception\Exception;
@@ -26,8 +26,8 @@ class AbstractControllerTest extends TestCase
     /** @var string */
     private string $endpoint;
 
-    /** @var ApiConfigInterface&MockObject */
-    private ApiConfigInterface $config;
+    /** @var ApiConfig&MockObject */
+    private ApiConfig $config;
 
     /** @var AbstractController&MockObject */
     private AbstractController $sut;
@@ -40,7 +40,7 @@ class AbstractControllerTest extends TestCase
         $this->service = 123;
         $this->endpoint = '__dummy_endpoint__';
 
-        $this->config = $this->createMock(ApiConfigInterface::class);
+        $this->config = $this->createMock(ApiConfig::class);
         $this->config->method('getAppId')->willReturn($this->service);
 
         $this->sut = $this->getMockForAbstractClass(

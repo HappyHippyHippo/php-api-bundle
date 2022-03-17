@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Tests\Unit\Transformer\OpenApi;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 use Hippy\Api\Transformer\OpenApi\VersionTransformer;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -10,8 +10,8 @@ use PHPUnit\Framework\TestCase;
 /** @coversDefaultClass \Hippy\Api\Transformer\OpenApi\VersionTransformer */
 class VersionTransformerTest extends TestCase
 {
-    /** @var ApiConfigInterface&MockObject */
-    protected ApiConfigInterface $config;
+    /** @var ApiConfig&MockObject */
+    protected ApiConfig $config;
 
     /** @var VersionTransformer */
     protected VersionTransformer $sut;
@@ -21,7 +21,7 @@ class VersionTransformerTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->config = $this->createMock(ApiConfigInterface::class);
+        $this->config = $this->createMock(ApiConfig::class);
         $this->sut = new VersionTransformer($this->config);
     }
 

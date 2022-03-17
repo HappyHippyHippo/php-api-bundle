@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Tests\Unit\Listener;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 use Hippy\Api\Error\ErrorCode;
 use Hippy\Api\Listener\AccessEventSubscriber;
 use Hippy\Error\Error;
@@ -25,8 +25,8 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class AccessEventSubscriberTest extends TestCase
 {
-    /** @var ApiConfigInterface&MockObject */
-    protected ApiConfigInterface $config;
+    /** @var ApiConfig&MockObject */
+    protected ApiConfig $config;
 
     /** @var Request&MockObject */
     protected Request $request;
@@ -42,7 +42,7 @@ class AccessEventSubscriberTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->config = $this->createMock(ApiConfigInterface::class);
+        $this->config = $this->createMock(ApiConfig::class);
         $this->request = $this->createMock(Request::class);
         $this->sut = new AccessEventSubscriber($this->config);
     }

@@ -6,6 +6,9 @@ use Doctrine\DBAL\Connection;
 use Hippy\Api\Model\Controller\Check\CheckResponse;
 use Exception;
 
+/**
+ * @method string getName()
+ */
 abstract class AbstractDatabaseQueryCheck implements CheckInterface
 {
     /** @var string */

@@ -2,10 +2,10 @@
 
 namespace Hippy\Api\Validator;
 
-use Hippy\Api\Transformer\Validator\ViolationTransformerInterface;
+use Hippy\Api\Transformer\Validator\TransformerInterface;
 use Hippy\Error\ErrorCollection;
 use Hippy\Exception\Exception;
-use Hippy\Model\ModelInterface;
+use Hippy\Model\Model;
 use Symfony\Component\Validator\Validator\ValidatorInterface as SymfonyValidatorInterface;
 
 abstract class AbstractValidator implements ValidatorInterface
@@ -18,14 +18,14 @@ abstract class AbstractValidator implements ValidatorInterface
     }
 
     /**
-     * @param ModelInterface $model
-     * @param ViolationTransformerInterface $transformer
-     * @return ModelInterface
+     * @param Model $model
+     * @param TransformerInterface $transformer
+     * @return Model
      */
     protected function process(
-        ModelInterface $model,
-        ViolationTransformerInterface $transformer,
-    ): ModelInterface {
+        Model $model,
+        TransformerInterface $transformer,
+    ): Model {
         $errors = $this->validator->validate($model);
         if ($errors->count()) {
             $collection = new ErrorCollection();

@@ -25,7 +25,7 @@ class Transformer implements TransformerInterface
         }
 
         usort($this->strategies, function (StrategyInterface $strategy1, StrategyInterface $strategy2) {
-            return $strategy2->priority() - $strategy1->priority();
+            return $strategy2->getPriority() - $strategy1->getPriority();
         });
     }
 

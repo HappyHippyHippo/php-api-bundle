@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Listener;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 use Hippy\Api\Error\ErrorCode;
 use Hippy\Error\Error;
 use Hippy\Exception\Exception;
@@ -24,9 +24,9 @@ class AccessEventSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param ApiConfigInterface $config
+     * @param ApiConfig $config
      */
-    public function __construct(protected ApiConfigInterface $config)
+    public function __construct(protected ApiConfig $config)
     {
     }
 

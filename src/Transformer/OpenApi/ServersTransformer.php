@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Transformer\OpenApi;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 
 class ServersTransformer implements TransformerInterface
 {
@@ -12,9 +12,9 @@ class ServersTransformer implements TransformerInterface
     protected array $servers;
 
     /**
-     * @param ApiConfigInterface $config
+     * @param ApiConfig $config
      */
-    public function __construct(ApiConfigInterface $config)
+    public function __construct(ApiConfig $config)
     {
         $this->servers = [];
         $servers = $config->getEndpointOpenApiServers();

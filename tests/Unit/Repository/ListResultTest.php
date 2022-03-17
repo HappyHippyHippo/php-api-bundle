@@ -3,7 +3,7 @@
 namespace Hippy\Api\Tests\Unit\Repository;
 
 use Hippy\Api\Repository\ListResult;
-use Hippy\Model\CollectionInterface;
+use Hippy\Model\Collection;
 use PHPUnit\Framework\TestCase;
 
 /** @coversDefaultClass \Hippy\Api\Repository\ListResult */
@@ -17,7 +17,7 @@ class ListResultTest extends TestCase
      */
     public function testConstructor(): void
     {
-        $collection = $this->createMock(CollectionInterface::class);
+        $collection = $this->createMock(Collection::class);
         $search = '__dummy_search__';
         $start = 123;
         $count = 456;

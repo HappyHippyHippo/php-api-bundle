@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Listener\ExceptionStrategy;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 use Hippy\Error\Error;
 use Hippy\Error\ErrorCollection;
 use Hippy\Error\ExceptionError;
@@ -15,9 +15,9 @@ use Throwable;
 class UnhandledHttpExceptionStrategy implements StrategyInterface
 {
     /**
-     * @param ApiConfigInterface $config
+     * @param ApiConfig $config
      */
-    public function __construct(protected ApiConfigInterface $config)
+    public function __construct(protected ApiConfig $config)
     {
     }
 

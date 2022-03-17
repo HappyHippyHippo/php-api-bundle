@@ -2,7 +2,7 @@
 
 namespace Hippy\Api\Controller\Base;
 
-use Hippy\Api\Config\ApiConfigInterface;
+use Hippy\Api\Config\ApiConfig;
 use Hippy\Api\Controller\AbstractController;
 use Hippy\Api\Service\Base\ConfigService;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,11 +14,11 @@ class ConfigController extends AbstractController
     private const ENDPOINT_CODE = 4;
 
     /**
-     * @param ApiConfigInterface $config
+     * @param ApiConfig $config
      * @param ConfigService $service
      */
     public function __construct(
-        ApiConfigInterface $config,
+        ApiConfig $config,
         protected ConfigService $service,
     ) {
         parent::__construct($config, self::ENDPOINT_CODE);

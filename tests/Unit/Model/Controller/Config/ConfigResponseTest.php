@@ -3,7 +3,7 @@
 namespace Hippy\Api\Tests\Unit\Model\Controller\Config;
 
 use Hippy\Api\Model\Controller\Config\ConfigResponse;
-use Hippy\Config\ConfigInterface;
+use Hippy\Config\Config;
 use PHPUnit\Framework\TestCase;
 
 /** @coversDefaultClass \Hippy\Api\Model\Controller\Config\ConfigResponse */
@@ -12,11 +12,10 @@ class ConfigResponseTest extends TestCase
     /**
      * @return void
      * @covers ::__construct
-     * @covers ::getConfig
      */
     public function testConstructor(): void
     {
-        $config = $this->createMock(ConfigInterface::class);
+        $config = $this->createMock(Config::class);
 
         $sut = new ConfigResponse($config);
 
