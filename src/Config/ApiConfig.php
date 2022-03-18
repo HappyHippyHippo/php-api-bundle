@@ -2,6 +2,8 @@
 
 namespace Hippy\Api\Config;
 
+use DateTime;
+use Exception;
 use Hippy\Config\Config;
 use Hippy\Model\Model;
 use TypeError;
@@ -311,5 +313,19 @@ class ApiConfig extends Model
             throw new TypeError($path . ' config value is not an array');
         }
         return $value;
+    }
+
+    /**
+     * @param string $path
+     * @return DateTime
+     */
+    protected function datetime(string $path): DateTime
+    {
+        $value = $this->string($path);
+        try {
+            return new Datetime($value);
+        } catch (Exception) {
+            throw new TypeError($path . ' invalid datetime initialization string : ' . $value);
+        }
     }
 }

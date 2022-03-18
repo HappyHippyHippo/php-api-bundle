@@ -2,6 +2,8 @@
 
 namespace Hippy\Api\Tests\Unit\Config;
 
+use DateTime;
+use Exception;
 use Hippy\Api\Config\ApiConfig;
 use Hippy\Config\Config;
 use PHPUnit\Framework\TestCase;
@@ -329,6 +331,66 @@ class ApiConfigTest extends TestCase
         $this->expectExceptionMessage($path . ' config value is not an array');
 
         $method = new ReflectionMethod(ApiConfig::class, 'array');
+        $method->invoke($sut, $path);
+    }
+
+    /**
+     * @return void
+     * @covers ::__construct
+     * @covers ::datetime
+     * @throws Exception
+     * @throws ReflectionException
+     */
+    public function testDateTime(): void
+    {
+        $path = '__dummy_path__';
+        $value = '2000-01-01 00:00:00';
+        $base = $this->createMock(Config::class);
+        $base->expects($this->once())->method('get')->with($path)->willReturn($value);
+        $sut = new ApiConfig($base);
+
+        $method = new ReflectionMethod(ApiConfig::class, 'datetime');
+        $this->assertEquals(new DateTime($value), $method->invoke($sut, $path));
+    }
+
+    /**
+     * @return void
+     * @covers ::__construct
+     * @covers ::datetime
+     * @throws ReflectionException
+     */
+    public function testDateTimeThrowsOnInvalidType(): void
+    {
+        $path = '__dummy_path__';
+        $base = $this->createMock(Config::class);
+        $base->expects($this->once())->method('get')->with($path)->willReturn(true);
+        $sut = new ApiConfig($base);
+
+        $this->expectException(TypeError::class);
+        $this->expectExceptionMessage($path . ' config value is not a string');
+
+        $method = new ReflectionMethod(ApiConfig::class, 'datetime');
+        $method->invoke($sut, $path);
+    }
+
+    /**
+     * @return void
+     * @covers ::__construct
+     * @covers ::datetime
+     * @throws ReflectionException
+     */
+    public function testDateTimeThrowsOnInvalidDateString(): void
+    {
+        $path = '__dummy_path__';
+        $value = '__dummy_invalid_datetime__';
+        $base = $this->createMock(Config::class);
+        $base->expects($this->once())->method('get')->with($path)->willReturn($value);
+        $sut = new ApiConfig($base);
+
+        $this->expectException(TypeError::class);
+        $this->expectExceptionMessage($path . ' invalid datetime initialization string : ' . $value);
+
+        $method = new ReflectionMethod(ApiConfig::class, 'datetime');
         $method->invoke($sut, $path);
     }
 
