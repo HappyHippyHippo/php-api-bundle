@@ -5,6 +5,8 @@ namespace Hippy\Api\Tests\Unit\Config;
 use Hippy\Api\Config\ApiConfig;
 use Hippy\Config\Config;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
+use ReflectionMethod;
 use Symfony\Component\Yaml\Yaml;
 use TypeError;
 
@@ -60,7 +62,11 @@ class ApiConfigTest extends TestCase
      * @covers ::getAccessDenyGlobals
      * @covers ::getAccessDenyEndpoints
      * @covers ::isHeaderVersionEnabled
-     * @covers ::get
+     * @covers ::bool
+     * @covers ::int
+     * @covers ::float
+     * @covers ::string
+     * @covers ::array
      * @dataProvider getProvider
      */
     public function testPartialRequest(string $method, string $path, mixed $expected): void
@@ -104,7 +110,11 @@ class ApiConfigTest extends TestCase
      * @covers ::getAccessDenyGlobals
      * @covers ::getAccessDenyEndpoints
      * @covers ::isHeaderVersionEnabled
-     * @covers ::get
+     * @covers ::bool
+     * @covers ::int
+     * @covers ::float
+     * @covers ::string
+     * @covers ::array
      * @dataProvider getProvider
      */
     public function testPartialExceptionRequest(string $method, string $path, mixed $value, string $expected): void
@@ -131,6 +141,195 @@ class ApiConfigTest extends TestCase
         $sut = new ApiConfig($base);
 
         $this->assertEquals($serialized, $sut->jsonSerialize());
+    }
+
+    /**
+     * @return void
+     * @covers ::__construct
+     * @covers ::bool
+     * @throws ReflectionException
+     */
+    public function testBool(): void
+    {
+        $path = '__dummy_path__';
+        $base = $this->createMock(Config::class);
+        $base->expects($this->once())->method('get')->with($path)->willReturn(true);
+        $sut = new ApiConfig($base);
+
+        $method = new ReflectionMethod(ApiConfig::class, 'bool');
+        $this->assertTrue($method->invoke($sut, $path));
+    }
+
+    /**
+     * @return void
+     * @covers ::__construct
+     * @covers ::bool
+     * @throws ReflectionException
+     */
+    public function testBoolThrowsOnInvalidType(): void
+    {
+        $path = '__dummy_path__';
+        $base = $this->createMock(Config::class);
+        $base->expects($this->once())->method('get')->with($path)->willReturn(123);
+        $sut = new ApiConfig($base);
+
+        $this->expectException(TypeError::class);
+        $this->expectExceptionMessage($path . ' config value is not a boolean');
+
+        $method = new ReflectionMethod(ApiConfig::class, 'bool');
+        $method->invoke($sut, $path);
+    }
+
+    /**
+     * @return void
+     * @covers ::__construct
+     * @covers ::int
+     * @throws ReflectionException
+     */
+    public function testInt(): void
+    {
+        $path = '__dummy_path__';
+        $value = 123;
+        $base = $this->createMock(Config::class);
+        $base->expects($this->once())->method('get')->with($path)->willReturn($value);
+        $sut = new ApiConfig($base);
+
+        $method = new ReflectionMethod(ApiConfig::class, 'int');
+        $this->assertEquals($value, $method->invoke($sut, $path));
+    }
+
+    /**
+     * @return void
+     * @covers ::__construct
+     * @covers ::int
+     * @throws ReflectionException
+     */
+    public function testIntThrowsOnInvalidType(): void
+    {
+        $path = '__dummy_path__';
+        $base = $this->createMock(Config::class);
+        $base->expects($this->once())->method('get')->with($path)->willReturn(true);
+        $sut = new ApiConfig($base);
+
+        $this->expectException(TypeError::class);
+        $this->expectExceptionMessage($path . ' config value is not an integer');
+
+        $method = new ReflectionMethod(ApiConfig::class, 'int');
+        $method->invoke($sut, $path);
+    }
+
+    /**
+     * @return void
+     * @covers ::__construct
+     * @covers ::float
+     * @throws ReflectionException
+     */
+    public function testFloat(): void
+    {
+        $path = '__dummy_path__';
+        $value = 123.456;
+        $base = $this->createMock(Config::class);
+        $base->expects($this->once())->method('get')->with($path)->willReturn($value);
+        $sut = new ApiConfig($base);
+
+        $method = new ReflectionMethod(ApiConfig::class, 'float');
+        $this->assertEquals($value, $method->invoke($sut, $path));
+    }
+
+    /**
+     * @return void
+     * @covers ::__construct
+     * @covers ::float
+     * @throws ReflectionException
+     */
+    public function testFloatThrowsOnInvalidType(): void
+    {
+        $path = '__dummy_path__';
+        $base = $this->createMock(Config::class);
+        $base->expects($this->once())->method('get')->with($path)->willReturn(true);
+        $sut = new ApiConfig($base);
+
+        $this->expectException(TypeError::class);
+        $this->expectExceptionMessage($path . ' config value is not a float');
+
+        $method = new ReflectionMethod(ApiConfig::class, 'float');
+        $method->invoke($sut, $path);
+    }
+
+    /**
+     * @return void
+     * @covers ::__construct
+     * @covers ::string
+     * @throws ReflectionException
+     */
+    public function testString(): void
+    {
+        $path = '__dummy_path__';
+        $value = '__dummy_value__';
+        $base = $this->createMock(Config::class);
+        $base->expects($this->once())->method('get')->with($path)->willReturn($value);
+        $sut = new ApiConfig($base);
+
+        $method = new ReflectionMethod(ApiConfig::class, 'string');
+        $this->assertEquals($value, $method->invoke($sut, $path));
+    }
+
+    /**
+     * @return void
+     * @covers ::__construct
+     * @covers ::string
+     * @throws ReflectionException
+     */
+    public function testStringThrowsOnInvalidType(): void
+    {
+        $path = '__dummy_path__';
+        $base = $this->createMock(Config::class);
+        $base->expects($this->once())->method('get')->with($path)->willReturn(true);
+        $sut = new ApiConfig($base);
+
+        $this->expectException(TypeError::class);
+        $this->expectExceptionMessage($path . ' config value is not a string');
+
+        $method = new ReflectionMethod(ApiConfig::class, 'string');
+        $method->invoke($sut, $path);
+    }
+
+    /**
+     * @return void
+     * @covers ::__construct
+     * @covers ::array
+     * @throws ReflectionException
+     */
+    public function testArray(): void
+    {
+        $path = '__dummy_path__';
+        $value = ['__dummy_value__'];
+        $base = $this->createMock(Config::class);
+        $base->expects($this->once())->method('get')->with($path)->willReturn($value);
+        $sut = new ApiConfig($base);
+
+        $method = new ReflectionMethod(ApiConfig::class, 'array');
+        $this->assertEquals($value, $method->invoke($sut, $path));
+    }
+
+    /**
+     * @return void
+     * @covers ::__construct
+     * @covers ::array
+     * @throws ReflectionException
+     */
+    public function testArrayThrowsOnInvalidType(): void
+    {
+        $path = '__dummy_path__';
+        $base = $this->createMock(Config::class);
+        $base->expects($this->once())->method('get')->with($path)->willReturn(true);
+        $sut = new ApiConfig($base);
+
+        $this->expectException(TypeError::class);
+        $this->expectExceptionMessage($path . ' config value is not an array');
+
+        $method = new ReflectionMethod(ApiConfig::class, 'array');
+        $method->invoke($sut, $path);
     }
 
     /**

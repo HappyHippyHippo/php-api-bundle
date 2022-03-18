@@ -17,15 +17,6 @@ class ApiConfig extends Model
     }
 
     /**
-     * @param string $path
-     * @return mixed
-     */
-    public function get(string $path): mixed
-    {
-        return $this->config->get($path);
-    }
-
-    /**
      * @return string
      */
     public function getRoot(): string
@@ -39,11 +30,7 @@ class ApiConfig extends Model
      */
     public function getAppId(): int
     {
-        $value = $this->get('app.id');
-        if (!is_int($value)) {
-            throw new TypeError('app.id config value is not an integer');
-        }
-        return $value;
+        return $this->int('app.id');
     }
 
     /**
@@ -52,11 +39,7 @@ class ApiConfig extends Model
      */
     public function getAppName(): string
     {
-        $value = $this->get('app.name');
-        if (!is_string($value)) {
-            throw new TypeError('app.name config value is not a string');
-        }
-        return $value;
+        return $this->string('app.name');
     }
 
     /**
@@ -65,11 +48,7 @@ class ApiConfig extends Model
      */
     public function getAppVersion(): string
     {
-        $value = $this->get('app.version');
-        if (!is_string($value)) {
-            throw new TypeError('app.version config value is not a string');
-        }
-        return $value;
+        return $this->string('app.version');
     }
 
     /**
@@ -78,11 +57,7 @@ class ApiConfig extends Model
      */
     public function isEndpointConfigEnabled(): bool
     {
-        $value = $this->get('endpoint.config.enabled');
-        if (!is_bool($value)) {
-            throw new TypeError('endpoint.config.enabled config value is not a boolean');
-        }
-        return $value;
+        return $this->bool('endpoint.config.enabled');
     }
 
     /**
@@ -91,11 +66,7 @@ class ApiConfig extends Model
      */
     public function isEndpointOpenApiEnabled(): bool
     {
-        $value = $this->get('endpoint.openapi.enabled');
-        if (!is_bool($value)) {
-            throw new TypeError('endpoint.openapi.enabled config value is not a boolean');
-        }
-        return $value;
+        return $this->bool('endpoint.openapi.enabled');
     }
 
     /**
@@ -104,11 +75,7 @@ class ApiConfig extends Model
      */
     public function getEndpointOpenApiSource(): string
     {
-        $value = $this->get('endpoint.openapi.source');
-        if (!is_string($value)) {
-            throw new TypeError('endpoint.openapi.source config value is not a string');
-        }
-        return $value;
+        return $this->string('endpoint.openapi.source');
     }
 
     /**
@@ -117,11 +84,7 @@ class ApiConfig extends Model
      */
     public function getEndpointOpenApiServers(): array
     {
-        $value = $this->get('endpoint.openapi.servers');
-        if (!is_array($value)) {
-            throw new TypeError('endpoint.openapi.servers config value is not an array');
-        }
-        return $value;
+        return $this->array('endpoint.openapi.servers');
     }
 
     /**
@@ -130,11 +93,7 @@ class ApiConfig extends Model
      */
     public function isCorsEnabled(): bool
     {
-        $value = $this->get('cors.enabled');
-        if (!is_bool($value)) {
-            throw new TypeError('cors.enabled config value is not a boolean');
-        }
-        return $value;
+        return $this->bool('cors.enabled');
     }
 
     /**
@@ -143,11 +102,7 @@ class ApiConfig extends Model
      */
     public function getCorsOrigin(): string
     {
-        $value = $this->get('cors.origin');
-        if (!is_string($value)) {
-            throw new TypeError('cors.origin config value is not a string');
-        }
-        return $value;
+        return $this->string('cors.origin');
     }
 
     /**
@@ -156,11 +111,7 @@ class ApiConfig extends Model
      */
     public function isErrorTraceEnabled(): bool
     {
-        $value = $this->get('errors.trace.enabled');
-        if (!is_bool($value)) {
-            throw new TypeError('errors.trace.enabled config value is not a boolean');
-        }
-        return $value;
+        return $this->bool('errors.trace.enabled');
     }
 
     /**
@@ -169,11 +120,7 @@ class ApiConfig extends Model
      */
     public function isLogRequestEnabled(): bool
     {
-        $value = $this->get('log.request.enabled');
-        if (!is_bool($value)) {
-            throw new TypeError('log.request.enabled config value is not a boolean');
-        }
-        return $value;
+        return $this->bool('log.request.enabled');
     }
 
     /**
@@ -182,11 +129,7 @@ class ApiConfig extends Model
      */
     public function getLogRequestMessage(): string
     {
-        $value = $this->get('log.request.message');
-        if (!is_string($value)) {
-            throw new TypeError('log.request.message config value is not a string');
-        }
-        return $value;
+        return $this->string('log.request.message');
     }
 
     /**
@@ -195,11 +138,7 @@ class ApiConfig extends Model
      */
     public function getLogRequestLevel(): string
     {
-        $value = $this->get('log.request.level');
-        if (!is_string($value)) {
-            throw new TypeError('log.request.level config value is not a string');
-        }
-        return $value;
+        return $this->string('log.request.level');
     }
 
     /**
@@ -208,11 +147,7 @@ class ApiConfig extends Model
      */
     public function isLogResponseEnabled(): bool
     {
-        $value = $this->get('log.response.enabled');
-        if (!is_bool($value)) {
-            throw new TypeError('log.response.enabled config value is not a boolean');
-        }
-        return $value;
+        return $this->bool('log.response.enabled');
     }
 
     /**
@@ -221,11 +156,7 @@ class ApiConfig extends Model
      */
     public function getLogResponseMessage(): string
     {
-        $value = $this->get('log.response.message');
-        if (!is_string($value)) {
-            throw new TypeError('log.response.message config value is not a string');
-        }
-        return $value;
+        return $this->string('log.response.message');
     }
 
     /**
@@ -234,11 +165,7 @@ class ApiConfig extends Model
      */
     public function getLogResponseLevel(): string
     {
-        $value = $this->get('log.response.level');
-        if (!is_string($value)) {
-            throw new TypeError('log.response.level config value is not a string');
-        }
-        return $value;
+        return $this->string('log.response.level');
     }
 
     /**
@@ -247,11 +174,7 @@ class ApiConfig extends Model
      */
     public function isLogExceptionEnabled(): bool
     {
-        $value = $this->get('log.exception.enabled');
-        if (!is_bool($value)) {
-            throw new TypeError('log.exception.enabled config value is not a boolean');
-        }
-        return $value;
+        return $this->bool('log.exception.enabled');
     }
 
     /**
@@ -260,11 +183,7 @@ class ApiConfig extends Model
      */
     public function getLogExceptionMessage(): string
     {
-        $value = $this->get('log.exception.message');
-        if (!is_string($value)) {
-            throw new TypeError('log.exception.message config value is not a string');
-        }
-        return $value;
+        return $this->string('log.exception.message');
     }
 
     /**
@@ -273,11 +192,7 @@ class ApiConfig extends Model
      */
     public function getLogExceptionLevel(): string
     {
-        $value = $this->get('log.exception.level');
-        if (!is_string($value)) {
-            throw new TypeError('log.exception.level config value is not a string');
-        }
-        return $value;
+        return $this->string('log.exception.level');
     }
 
     /**
@@ -286,24 +201,16 @@ class ApiConfig extends Model
      */
     public function getAccessAllowGlobals(): array
     {
-        $value = $this->get('access.allow.global');
-        if (!is_array($value)) {
-            throw new TypeError('access.allow.global config value is not an array');
-        }
-        return $value;
+        return $this->array('access.allow.global');
     }
 
     /**
-     * @return array<string, string[]>
+     * @return array<int|string, string[]>
      * @throws TypeError
      */
     public function getAccessAllowEndpoints(): array
     {
-        $value = $this->get('access.allow.endpoints');
-        if (!is_array($value)) {
-            throw new TypeError('access.allow.endpoints config value is not an array');
-        }
-        return $value;
+        return $this->array('access.allow.endpoints');
     }
 
     /**
@@ -312,24 +219,16 @@ class ApiConfig extends Model
      */
     public function getAccessDenyGlobals(): array
     {
-        $value = $this->get('access.deny.global');
-        if (!is_array($value)) {
-            throw new TypeError('access.deny.global config value is not an array');
-        }
-        return $value;
+        return $this->array('access.deny.global');
     }
 
     /**
-     * @return array<string, string[]>
+     * @return array<int|string, string[]>
      * @throws TypeError
      */
     public function getAccessDenyEndpoints(): array
     {
-        $value = $this->get('access.deny.endpoints');
-        if (!is_array($value)) {
-            throw new TypeError('access.deny.endpoints config value is not an array');
-        }
-        return $value;
+        return $this->array('access.deny.endpoints');
     }
 
     /**
@@ -338,11 +237,7 @@ class ApiConfig extends Model
      */
     public function isHeaderVersionEnabled(): bool
     {
-        $value = $this->get('version.header.enabled');
-        if (!is_bool($value)) {
-            throw new TypeError('version.header.enabled config value is not a boolean');
-        }
-        return $value;
+        return $this->bool('version.header.enabled');
     }
 
     /**
@@ -351,5 +246,70 @@ class ApiConfig extends Model
     public function jsonSerialize(): array
     {
         return $this->config->jsonSerialize();
+    }
+
+    /**
+     * @param string $path
+     * @return bool
+     */
+    protected function bool(string $path): bool
+    {
+        $value = $this->config->get($path);
+        if (!is_bool($value)) {
+            throw new TypeError($path . ' config value is not a boolean');
+        }
+        return $value;
+    }
+
+    /**
+     * @param string $path
+     * @return int
+     */
+    protected function int(string $path): int
+    {
+        $value = $this->config->get($path);
+        if (!is_int($value)) {
+            throw new TypeError($path . ' config value is not an integer');
+        }
+        return $value;
+    }
+
+    /**
+     * @param string $path
+     * @return float
+     */
+    protected function float(string $path): float
+    {
+        $value = $this->config->get($path);
+        if (!is_float($value)) {
+            throw new TypeError($path . ' config value is not a float');
+        }
+        return $value;
+    }
+
+    /**
+     * @param string $path
+     * @return string
+     */
+    protected function string(string $path): string
+    {
+        $value = $this->config->get($path);
+        if (!is_string($value)) {
+            throw new TypeError($path . ' config value is not a string');
+        }
+        return $value;
+    }
+
+    /**
+     * @param string $path
+     * @return array<int|string, mixed>
+     */
+    protected function array(string $path): array
+    {
+        $value = $this->config->get($path);
+        if (!is_array($value)) {
+            throw new TypeError($path . ' config value is not an array');
+        }
+        return $value;
     }
 }
