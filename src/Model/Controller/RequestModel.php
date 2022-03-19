@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @method Request getRequest()
- * @method string|null getHeaderRequestId()
+ * @method string getHeaderRequestId()
  */
 class RequestModel extends Model
 {
