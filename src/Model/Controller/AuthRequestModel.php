@@ -15,8 +15,8 @@ class AuthRequestModel extends RequestModel
     /**
      * @return string|null
      * @Assert\NotBlank(message = "x-auth-token-id header must be present")
-     * @Assert\Regex(pattern = "/^\d+$/", message = "x-auth-user-id header must be an integer")
-     * @Assert\Positive(message = "x-auth-user-id header must be a positive integer")
+     * @Assert\Regex(pattern = "/^\d+$/", message = "x-auth-token-id header must be an integer")
+     * @Assert\Positive(message = "x-auth-token-id header must be a positive integer")
      */
     protected ?string $headerAuthTokenId;
 
