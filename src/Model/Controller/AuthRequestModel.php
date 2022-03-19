@@ -6,8 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @method string|null getHeaderAuthTokenId()
- * @method string|null getHeaderAuthUserId()
+ * @method int|null getHeaderAuthTokenId()
+ * @method int|null getHeaderAuthUserId()
  * @method string|null getHeaderAuthUserEmail()
  */
 class AuthRequestModel extends RequestModel
