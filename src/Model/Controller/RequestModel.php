@@ -3,6 +3,8 @@
 namespace Hippy\Api\Model\Controller;
 
 use Hippy\Model\Model;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
+use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -49,5 +51,56 @@ class RequestModel extends Model
             }
         }
         return null;
+    }
+
+    /**
+     * @param ParameterBag $bag
+     * @param string $param
+     * @param mixed|null $default
+     * @return mixed
+     */
+    protected function searchBagBool(ParameterBag $bag, string $param, mixed $default = null): mixed
+    {
+        $value = $this->searchBag($bag, $param, $default);
+        return filter_var($value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) ?? $value;
+    }
+
+    /**
+     * @param ParameterBag $bag
+     * @param string $param
+     * @param mixed|null $default
+     * @return mixed
+     */
+    protected function searchBagInt(ParameterBag $bag, string $param, mixed $default = null): mixed
+    {
+        $value = $this->searchBag($bag, $param, $default);
+        return filter_var($value, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) ?? $value;
+    }
+
+    /**
+     * @param ParameterBag $bag
+     * @param string $param
+     * @param mixed|null $default
+     * @return mixed
+     */
+    protected function searchBagFloat(ParameterBag $bag, string $param, mixed $default = null): mixed
+    {
+        $value = $this->searchBag($bag, $param, $default);
+        return filter_var($value, FILTER_VALIDATE_FLOAT, FILTER_NULL_ON_FAILURE) ?? $value;
+    }
+
+    /**
+     * @param ParameterBag $bag
+     * @param string $param
+     * @param mixed|null $default
+     * @return mixed
+     */
+    protected function searchBag(ParameterBag $bag, string $param, mixed $default = null): mixed
+    {
+        try {
+            return $bag->get($param, $default);
+        } catch (BadRequestException) {
+            return $bag->all($param);
+        }
     }
 }

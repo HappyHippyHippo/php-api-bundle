@@ -4,14 +4,18 @@ namespace Hippy\Api\Model\Controller\Check;
 
 use Hippy\Api\Model\Controller\RequestModel;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @method bool isDeep()
  */
 class CheckRequest extends RequestModel
 {
-    /** @var bool|null */
-    protected ?bool $deep;
+    /**
+     * @var mixed
+     * @Assert\Type(type = "bool", message = "deep parameter must be a boolean")
+     */
+    protected mixed $deep;
 
     /**
      * @param Request $request
@@ -20,6 +24,6 @@ class CheckRequest extends RequestModel
     {
         parent::__construct($request);
 
-        $this->deep = (bool) $request->query->get('deep', true);
+        $this->deep = $this->searchBagBool($request->query, 'deep', false);
     }
 }

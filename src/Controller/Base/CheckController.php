@@ -6,6 +6,7 @@ use Hippy\Api\Config\ApiConfig;
 use Hippy\Api\Controller\AbstractController;
 use Hippy\Api\Model\Controller\Check\CheckRequest;
 use Hippy\Api\Service\Base\CheckService;
+use Hippy\Api\Validator\Base\CheckValidator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,10 +18,12 @@ class CheckController extends AbstractController
 
     /**
      * @param ApiConfig $config
+     * @param CheckValidator $validator
      * @param CheckService $service
      */
     public function __construct(
         ApiConfig $config,
+        protected CheckValidator $validator,
         protected CheckService $service,
     ) {
         parent::__construct($config, self::ENDPOINT_CODE);
@@ -49,7 +52,7 @@ class CheckController extends AbstractController
     {
         return $this->envelope(
             function () use ($request) {
-                return $this->service->check(new CheckRequest($request));
+                return $this->service->check($this->validator->validate($request));
             }
         );
     }

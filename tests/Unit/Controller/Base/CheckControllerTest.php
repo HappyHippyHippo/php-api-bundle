@@ -7,6 +7,7 @@ use Hippy\Api\Controller\Base\CheckController;
 use Hippy\Api\Model\Controller\Check\CheckRequest;
 use Hippy\Api\Model\Controller\Check\CheckResponse;
 use Hippy\Api\Service\Base\CheckService;
+use Hippy\Api\Validator\Base\CheckValidator;
 use Hippy\Model\Envelope;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -26,6 +27,9 @@ class CheckControllerTest extends TestCase
     /** @var CheckService&MockObject */
     private CheckService $service;
 
+    /** @var CheckValidator&MockObject */
+    private CheckValidator $validator;
+
     /** @var CheckController&MockObject */
     private CheckController $sut;
 
@@ -36,8 +40,9 @@ class CheckControllerTest extends TestCase
     {
         $this->config = $this->createMock(ApiConfig::class);
         $this->service = $this->createMock(CheckService::class);
+        $this->validator = $this->createMock(CheckValidator::class);
         $this->sut = $this->getMockBuilder(CheckController::class)
-            ->setConstructorArgs([$this->config, $this->service])
+            ->setConstructorArgs([$this->config, $this->validator, $this->service])
             ->onlyMethods(['json'])
             ->getMock();
     }
@@ -87,6 +92,7 @@ class CheckControllerTest extends TestCase
         $request->headers = new HeaderBag(['x-request-id' => ['__dummy_request_id__'], 'x-organization-id' => [123]]);
 
         $checkRequest = new CheckRequest($request);
+        $this->validator->expects($this->once())->method('validate')->with($request)->willReturn($checkRequest);
 
         $response = $this->createMock(CheckResponse::class);
         $this->service->expects($this->once())->method('check')->with($checkRequest)->willReturn($response);
