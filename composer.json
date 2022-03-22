@@ -15,7 +15,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.8",
         "guzzlehttp/guzzle": "^7.2",
-        "happyhippyhippo/php-skeleton-bundle": "^1.1",
+        "happyhippyhippo/php-skeleton-bundle": "^1.2",
         "symfony/console": "^6.0",
         "symfony/doctrine-bridge": "^6.0",
         "symfony/dotenv": "^6.0",

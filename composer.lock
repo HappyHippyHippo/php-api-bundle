@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "95dc693c5989816de4cc7dfa47b3d379",
+    "content-hash": "48b0c9bbc94fa469289fdb23f22b86b9",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1843,11 +1843,11 @@
         },
         {
             "name": "happyhippyhippo/php-skeleton-bundle",
-            "version": "1.1.5",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:HappyHippyHippo/php-skeleton-bundle.git",
-                "reference": "2623bb0bd4eeb4ed6b05e9a5e97e2faaad0e2ba7"
+                "reference": "17cfd87b35a984325965f174e3681e5e78859ece"
             },
             "require": {
                 "ext-ctype": "*",
@@ -1903,7 +1903,7 @@
                 "proprietary"
             ],
             "description": "PHP applications and bundles base classes and services",
-            "time": "2022-03-20T22:57:22+00:00"
+            "time": "2022-03-22T19:09:01+00:00"
         },
         {
             "name": "laminas/laminas-code",
